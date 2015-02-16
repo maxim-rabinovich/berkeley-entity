@@ -35,8 +35,11 @@ object ExtractWikipediaSentenceCorpus extends App {
 
     val outFile : File = new File(outDir + "enwiki-latest-pages-queries.txt")
     val pw      : PrintWriter = new PrintWriter(outFile)
-    for (title <- textDB.titleToText.keySet) {
-      val sentences : Array[String] = extractSentences(textDB.titleToText.get(title))
+    val titer   : java.util.Iterator[String] = textDB.titleToText.keySet().iterator()
+    while (titer.hasNext()) {
+      val title      : String = titer.next()
+      val text       : String = textDB.titleToText.get(title)
+      val sentences  : Array[String] = extractSentences(text)
 
       for (s <- sentences) { pw.println(s) }
     }
