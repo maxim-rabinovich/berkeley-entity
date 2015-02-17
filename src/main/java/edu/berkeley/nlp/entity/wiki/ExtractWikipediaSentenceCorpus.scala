@@ -31,7 +31,7 @@ object ExtractWikipediaSentenceCorpus extends App {
 
   def main() : Unit = {
 
-    printf("Running ExtractWikipediaSentenceCorpus with [wikiPath = %s, outDir = %s]...",
+    printf("Running ExtractWikipediaSentenceCorpus with [wikiPath = %s, outDir = %s]...\n",
            wikiPath, outDir)
 
     val titleDB : WikipediaTitleGivenSurfaceDB = WikipediaTitleGivenSurfaceDB.processWikipedia(wikiPath, querySet)

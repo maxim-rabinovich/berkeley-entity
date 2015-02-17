@@ -95,7 +95,8 @@ object WikipediaTitleGivenSurfaceDB {
     val surfaceToTitle = new CounterMap[String,String];
     val lines = IOUtils.lineIterator(IOUtils.openInHard(wikipediaPath));
     var counter = 0L;
-    while (lines.hasNext) {
+    var numTitlesSeen = 0L;
+    while (lines.hasNext && numTitlesSeen < 100) {
       counter += 1;
       val line = lines.next;
       if (line.startsWith("    <title>") && line.contains("</title>")) {
@@ -104,6 +105,8 @@ object WikipediaTitleGivenSurfaceDB {
           // Give titles a fairly hefty count
           surfaceToTitle.incrementCount(title, title, 100.0);
         }
+
+        numTitlesSeen += 1
       }
       var startIdx = line.indexOf("[[");
       while (startIdx >= 0 ) {

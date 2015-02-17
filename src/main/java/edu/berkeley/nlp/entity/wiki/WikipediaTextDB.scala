@@ -24,7 +24,7 @@ object WikipediaTextDB {
     var lineIdx = 0;
 
     val titleToTextMap : HashMap[String, String] = new HashMap[String, String]()
-    while (lines.hasNext) {
+    while (lines.hasNext && numPagesSeen < 100) {
       val line: String = lines.next;
       if (lineIdx % 100000 == 0) {
         println("Line: " + lineIdx + ", processed " + numPagesSeen + " pages");
