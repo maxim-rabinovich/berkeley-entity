@@ -25,7 +25,7 @@ object WikipediaTextDB {
 
     val titleToTextMap : HashMap[String, String] = new HashMap[String, String]()
     while (lines.hasNext && numPagesSeen < 100) {
-      val line: String = lines.next;
+      var line : String = lines.next;
       if (lineIdx % 100000 == 0) {
         println("Line: " + lineIdx + ", processed " + numPagesSeen + " pages");
       }
@@ -71,10 +71,12 @@ object WikipediaTextDB {
 
               // replace special link character with
               line.substring(startIdxOld).replaceFirst(line.substring(startIdxOld, endIdx + 2), replaceString)
+
+              if (lines.hasNext) { line = lines.next() } else { line = null }
             }
 
             rawText.append(" " + line)
-          } while (!(line.contains("/text") || line.contains("/page")))
+          } while (!(line == null || line.contains("/text") || line.contains("/page")))
 
           titleToTextMap.put(currentPageTitle, refineRawText(rawText.toString()))
 
