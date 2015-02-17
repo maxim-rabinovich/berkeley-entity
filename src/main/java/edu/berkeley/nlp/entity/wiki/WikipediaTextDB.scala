@@ -76,8 +76,8 @@ object WikipediaTextDB {
               printf("old start index = %d, old end index = %d, new start index = %d\n",
                      startIdxOld, endIdx, startIdx)
 
-              rawText.append(line.substring(endIdx + 2, if (startIdx >= 0) { startIdx } else { line.length }))
               rawText.append(" " + replaceString + " ")
+              rawText.append(line.substring(endIdx + 2, if (startIdx >= 0) { startIdx } else { line.length }))
 
               // line = (line.substring(startIdxOld)).replaceFirst(line.substring(startIdxOld, endIdx + 2), replaceString)
             }
