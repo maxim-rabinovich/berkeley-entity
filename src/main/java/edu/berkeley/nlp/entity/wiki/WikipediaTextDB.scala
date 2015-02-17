@@ -71,6 +71,9 @@ object WikipediaTextDB {
 
               // replace special link character with
 
+              printf("old start index = %d, old end index = %d, new start index = %d\n",
+                     startIdxOld, endIdx, startIdx)
+
               rawText.append(line.substring(endIdx + 2, if (startIdx >= 0) { startIdx } else { line.length }))
               rawText.append(" " + replaceString + " ")
 
