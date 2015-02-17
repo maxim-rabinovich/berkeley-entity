@@ -70,10 +70,14 @@ object WikipediaTextDB {
               startIdx = line.indexOf("[[", startIdx + 2);
 
               // replace special link character with
-              line = line.substring(startIdxOld).replaceFirst(line.substring(startIdxOld, endIdx + 2), replaceString)
+
+              rawText.append(line.substring(endIdx + 2, startIdx))
+              rawText.append(" " + replaceString + " ")
+
+              // line = (line.substring(startIdxOld)).replaceFirst(line.substring(startIdxOld, endIdx + 2), replaceString)
             }
 
-            rawText.append(" " + line)
+            // rawText.append(" " + line)
 
             if (lines.hasNext()) { line = lines.next() } else { line = null }
           } while (!(line == null || line.contains("/text") || line.contains("/page")))
