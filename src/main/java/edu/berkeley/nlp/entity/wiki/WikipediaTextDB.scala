@@ -71,7 +71,7 @@ object WikipediaTextDB {
 
               // replace special link character with
 
-              rawText.append(line.substring(endIdx + 2, startIdx))
+              rawText.append(line.substring(endIdx + 2, if (startIdx >= 0) { startIdx } else { line.length }))
               rawText.append(" " + replaceString + " ")
 
               // line = (line.substring(startIdxOld)).replaceFirst(line.substring(startIdxOld, endIdx + 2), replaceString)
