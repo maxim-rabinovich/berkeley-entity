@@ -46,6 +46,7 @@ object ExtractWikipediaSentenceCorpus extends App {
     }
 
     pw.close()
+
   }
 
   main()
