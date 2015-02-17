@@ -70,12 +70,12 @@ object WikipediaTextDB {
               startIdx = line.indexOf("[[", startIdx + 2);
 
               // replace special link character with
-              line.substring(startIdxOld).replaceFirst(line.substring(startIdxOld, endIdx + 2), replaceString)
-
-              if (lines.hasNext) { line = lines.next() } else { line = null }
+              line = line.substring(startIdxOld).replaceFirst(line.substring(startIdxOld, endIdx + 2), replaceString)
             }
 
             rawText.append(" " + line)
+
+            if (lines.hasNext()) { line = lines.next() } else { line = null }
           } while (!(line == null || line.contains("/text") || line.contains("/page")))
 
           titleToTextMap.put(currentPageTitle, refineRawText(rawText.toString()))
