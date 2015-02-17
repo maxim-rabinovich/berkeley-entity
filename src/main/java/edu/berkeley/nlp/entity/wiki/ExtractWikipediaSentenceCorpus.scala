@@ -19,6 +19,7 @@ object ExtractWikipediaSentenceCorpus extends App {
     args match {
       case Nil => {}
       case "-outDir" :: x :: rest => { outDir = if (x.endsWith("/")) {x} else { x + "/" } ; parseArgs(rest) }
+      case _ :: rest => { parseArgs(rest) }
     }
 
     return
@@ -46,4 +47,6 @@ object ExtractWikipediaSentenceCorpus extends App {
 
     pw.close()
   }
+
+  main()
 }
