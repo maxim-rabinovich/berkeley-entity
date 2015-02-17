@@ -54,8 +54,10 @@ object WikipediaTextDB {
 
             // identify and replace all links in the text
             var startIdx = line.indexOf("[[");
-            var startIdxOld = startIdx
+            var startIdxOld = -1
             while (startIdx >= 0) {
+              if (startIdxOld < 0) { rawText.append(line.substring(0, startIdx)) }
+
               val endIdx = line.indexOf("]]", startIdx);
               val pipeIdx = line.indexOf("|", startIdx);
               val replaceString: String = if (pipeIdx >= 0 && pipeIdx < endIdx) {
@@ -67,7 +69,7 @@ object WikipediaTextDB {
               }
 
               startIdxOld = startIdx
-              startIdx = line.indexOf("[[", startIdx + 2);
+              startIdx = line.indexOf("[[", endIdx + 2) // startIdxOld + 2);
 
               // replace special link character with
 
